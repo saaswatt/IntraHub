@@ -1,0 +1,238 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --background: #101b30;
+    --card: #192941;
+    --input: #26364f;
+    --border: #344765;
+    --primary: #1686dc;
+    --primary-hover: #0872c3;
+    --text: #ffffff;
+    --muted: #a9bdd6;
+    --success: #38c98b;
+    --danger: #ff7777;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background:
+        radial-gradient(circle at top, #1c385b, transparent 55%),
+        var(--background);
+    color: var(--text);
+}
+
+button,
+input {
+    font: inherit;
+}
+
+.portal-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+.portal-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 38px 30px;
+    text-align: center;
+    background: rgba(25, 41, 65, 0.96);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.wifi-icon {
+    font-size: 54px;
+    margin-bottom: 18px;
+}
+
+.brand h1 {
+    font-size: 30px;
+    letter-spacing: 0.5px;
+}
+
+.status-indicator {
+    display: inline-block;
+    margin-top: 9px;
+    color: var(--success);
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1.8px;
+}
+
+.welcome-section {
+    margin: 34px 0 28px;
+}
+
+.welcome-section h2,
+.authenticated-section h2 {
+    font-size: 25px;
+    margin-bottom: 12px;
+}
+
+.welcome-section p,
+.authenticated-section p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+#login-form {
+    text-align: left;
+}
+
+#login-form label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.password-wrapper {
+    display: flex;
+    align-items: center;
+    background: var(--input);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 18px;
+    overflow: hidden;
+}
+
+.password-wrapper:focus-within {
+    border-color: var(--primary);
+}
+
+.password-wrapper input {
+    width: 100%;
+    min-width: 0;
+    padding: 16px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text);
+    font-size: 15px;
+}
+
+.password-wrapper input::placeholder {
+    color: #8799b2;
+}
+
+.toggle-password {
+    padding: 12px;
+    border: none;
+    background: transparent;
+    color: #69baff;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.connect-button {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    background: var(--primary);
+    color: var(--text);
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.connect-button:hover {
+    background: var(--primary-hover);
+}
+
+.connect-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.notifications {
+    margin-top: 20px;
+}
+
+.notification {
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.notification.success {
+    background: rgba(56, 201, 139, 0.12);
+    color: var(--success);
+}
+
+.notification.error {
+    background: rgba(255, 119, 119, 0.12);
+    color: var(--danger);
+}
+
+.notification.info {
+    background: rgba(22, 134, 220, 0.12);
+    color: #69baff;
+}
+
+.authenticated-section {
+    margin-top: 35px;
+}
+
+.success-icon {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(56, 201, 139, 0.15);
+    color: var(--success);
+    font-size: 28px;
+}
+
+.authenticated-section form {
+    margin-top: 25px;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 38px;
+    color: #71849f;
+    font-size: 11px;
+}
+
+@media (max-width: 480px) {
+    .portal-container {
+        padding: 16px;
+    }
+
+    .portal-card {
+        padding: 32px 22px;
+    }
+
+    .brand h1 {
+        font-size: 27px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}

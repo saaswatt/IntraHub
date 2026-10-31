@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#101b30">
+
+    <title>{{ portal_name }} | Wi-Fi Access</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body>
+
+    <main class="portal-container">
+
+        <section class="portal-card">
+
+            <div class="wifi-icon" aria-hidden="true">
+                &#128246;
+            </div>
+
+            <div class="brand">
+                <h1>{{ portal_name }}</h1>
+                <span class="status-indicator">NETWORK ACCESS PORTAL</span>
+            </div>
+
+            {% if is_authenticated %}
+
+                <div class="authenticated-section">
+
+                    <div class="success-icon">&#10003;</div>
+
+                    <h2>You're authenticated!</h2>
+
+                    <p>
+                        Your portal session is active.
+                    </p>
+
+                    <form action="{{ url_for('portal.logout') }}" method="POST">
+                        <input
+                            type="hidden"
+                            name="csrf_token"
+                            value="{{ csrf_token() }}"
+                        >
+
+                        <button type="submit" class="connect-button">
+                            Disconnect
+                        </button>
+                    </form>
+
+                </div>
+
+            {% else %}
+
+                <div class="welcome-section">
+
+                    <h2>Welcome!</h2>
+
+                    <p>{{ welcome_message }}</p>
+
+                </div>
+
+                <form
+                    id="login-form"
+                    action="{{ url_for('portal.login') }}"
+                    method="POST"
+                >
+
+                    <input
+                        type="hidden"
+                        name="csrf_token"
+                        value="{{ csrf_token() }}"
+                    >
+
+                    <label for="password">
+                        Network access password
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="toggle-password"
+                            class="toggle-password"
+                            aria-label="Show password"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        id="connect-button"
+                        class="connect-button"
+                    >
+                        <span id="button-text">Connect to Network</span>
+                    </button>
+
+                </form>
+
+            {% endif %}
+
+            <div class="notifications" aria-live="polite">
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+
+                    {% for category, message in messages %}
+
+                        <div class="notification {{ category }}">
+                            {{ message }}
+                        </div>
+
+                    {% endfor %}
+
+                {% endwith %}
+
+            </div>
+
+            <footer>
+                <span>Powered by {{ portal_name }}</span>
+                <span>Secure Network Access</span>
+            </footer>
+
+        </section>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/portal.js') }}"></script>
+
+</body>
+</html>
